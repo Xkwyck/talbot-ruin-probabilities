@@ -29,8 +29,6 @@ By using arbitrary-precision arithmetic, the implementation remains stable even 
 │   ├── 01_example_exponential.ipynb  # Hyperexponential case (Example 1)
 │   ├── 02_example_pareto.ipynb       # Pareto distribution (Example 2)
 │   └── 03_example_lognormal.ipynb    # Log-normal distribution (Example 3)
-├── data/                     # (Optional) Exported numerical results
-├── figures/                  # Generated plots for the thesis
 ├── requirements.txt          # Project dependencies (mpmath, matplotlib, tqdm)
 ├── LICENSE                   # MIT License
 └── README.md
