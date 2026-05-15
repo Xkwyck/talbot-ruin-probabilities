@@ -84,14 +84,28 @@ pip install -r requirements.txt
 Open any of the files in `notebooks/` to see the method in action. Alternatively, use the library in a script:
 
 ```python
+import mpmath as mp
 from src.talbot import talbot_method_abate
 from src.laplace_transforms import lapl_psi, lapl_exponential
 
-# Set capital u, intensity lambda, mean mu, premium c, and zeta
+# Set precision
+M = 60
+ctx = mp.mp
+ctx.dps = M
+
+# Define parameters
+lmbda = ctx.mpf(1)
+c = ctx.mpf(1)
+sigmasq = ctx.mpf(0.5)
+mu = ctx.mpf(...) # Has to equal the expectation of the chosen distribution
+q = (c - lmbda * mu)/c
+zeta = 2 * c / sigmasq
+
+# Compute one probability
 u = 10.0
 prob = talbot_method_abate(
-    lapl_psi, t=u, M=60, 
-    lmbda=1.0, mu=1.0, c=1.2, zeta=5.0, 
+    lapl_psi, t=u, M=60, # Parameters for talbot
+    lmbda=lmbda, mu=mu, c=c, zeta=zeta, # Arguments for lapl_psi
     lapl_X_func=lapl_exponential # potentially add other parameters for lapl_exponential
 )
 print(f"Ruin probability at u={u}: {prob}")
